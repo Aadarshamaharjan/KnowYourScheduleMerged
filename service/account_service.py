@@ -15,7 +15,7 @@ class AccountService(Service):
                 return None
             else:
                 if password_verify(password, user_detail["password"]):
-                    return user_detail["user"],user_detail["role"]
+                    return user_detail["user"]
                 else:
                     return None
         except Exception:
@@ -25,7 +25,7 @@ class AccountService(Service):
     def signup(self, teacher):
         user = user_register.user
         password = user_register.password
-        user.user_id = generate_uuid()
+        user.sender = generate_uuid()
         user.created_at = timestamp()
         try:
             use_repo = UserRepo()
